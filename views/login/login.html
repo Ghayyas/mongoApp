@@ -1,0 +1,17 @@
+<html ng-app="myapp" ng-controller="appCtrl">
+	<title>
+		Sign in Page
+	</title>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="./login.js"></script>
+	</head>
+	<body>
+		<form ng-submit="login()" method="get">
+		<input type="text" placeholder="Enter your User Name" name="username" ng-model="username">
+		<input type="password" placeholder="Enter your Password" name="password" ng-model="userpass">
+		<input type="submit" value="Login">
+		</form>		
+		</body>
+		
+</html>
