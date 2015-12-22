@@ -11,14 +11,15 @@ let app = express();
 
 let istatic = path.resolve(__dirname,'views');
 app.use(express.static(istatic));
-let login = path.resolve(__dirname, 'views/login/login.html');
+let login = path.resolve(__dirname, 'views/login.html');
 app.use(bodyParser.urlencoded({extended: false}));
 
 initializeApp(app);
 
 app.get('/',function(req:express.Request, res: express.Response){
 //	let login = path.resolve(__dirname, 'views/login/login.html');
-	res.sendfile(login);
+    res.sendfile(login);
+
 });
 
 app.get('/signup',function(req:express.Request, res:express.Response){

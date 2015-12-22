@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var istatic = path.resolve(__dirname, 'views');
 app.use(express.static(istatic));
-var login = path.resolve(__dirname, 'views/login/login.html');
+var login = path.resolve(__dirname, 'views/login.html');
 app.use(bodyParser.urlencoded({ extended: false }));
 datab_1.initializeApp(app);
 app.get('/', function (req, res) {

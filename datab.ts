@@ -36,7 +36,7 @@ export function initializeApp(app){
 			}
 		});
 	});
-	app.get('/save',(req,res)=>{
+	app.get('/senddata',(req,res)=>{
 		userModel.find((err,success)=>{
 			if(err){
 				res.send(err);

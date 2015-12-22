@@ -30,7 +30,7 @@ function initializeApp(app) {
             }
         });
     });
-    app.get('/save', function (req, res) {
+    app.get('/senddata', function (req, res) {
         userModel.find(function (err, success) {
             if (err) {
                 res.send(err);

@@ -2,21 +2,25 @@
 var app = angular.module('myapp',[]);
 
 app.controller('appCtrl',function($scope,$http){
-	
-	 $http.get('/save').success(function(data){
-	$scope.log = data;
+	 $scope.self = this;
+     self.dataArray = "";
+	 $http.get('/senddata').success(function(data){
+	self.dataArray = data;
     })	
    .error(function(data){
 	console.log("Error:" +data);
    });		
-   
+       $scope.user = {};
+   	$scope.user.name = "";
+       $scope.user.pass = "";
 	$scope.login = function(){
    
 	//$scope.log = {};
-	$scope.username = "";
-	$scope.userpass = "";
+
+
+	//$scope.user.pass = "";
 	
-	if($scope.username === $scope.log.UserName && $scope.userpass === $scope.log.Password){
+      if($scope.user.name == self.dataArray.UserName){
 		alert('True');
 	}
 	else{
