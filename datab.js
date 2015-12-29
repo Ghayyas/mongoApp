@@ -18,7 +18,7 @@ function initializeApp(app) {
             UserName: req.body.user_name,
             Password: req.body.password,
             RepeatPass: req.body.repeatpass,
-            //Age: parseInt(req.body.age),
+            Age: parseInt(req.body.age),
             Gender: req.body.gender,
         });
         user.save(function (err, success) {
@@ -30,12 +30,16 @@ function initializeApp(app) {
             }
         });
     });
-    app.get('/senddata', function (req, res) {
-        userModel.find(function (err, success) {
+    app.post('/senddata', function (req, res) {
+        userModel.findOne({ UserName: req.body.name, Password: req.body.pass }, function (err, success) {
             if (err) {
-                res.send(err);
+                console.log("Not found");
+                console.log(err);
             }
-            res.json(success);
+            else {
+                console.log(success);
+                res.send(success);
+            }
         });
     });
 }

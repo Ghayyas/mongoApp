@@ -23,7 +23,7 @@ export function initializeApp(app){
 			UserName: req.body.user_name,
 			Password: req.body.password,
 			RepeatPass: req.body.repeatpass,
-			//Age: parseInt(req.body.age),
+			Age: parseInt(req.body.age),
 			Gender: req.body.gender,
 				
 		});
@@ -36,12 +36,17 @@ export function initializeApp(app){
 			}
 		});
 	});
-	app.get('/senddata',(req,res)=>{
-		userModel.find((err,success)=>{
+	app.post('/senddata',(req,res)=>{
+		userModel.findOne({UserName:req.body.name, Password: req.body.pass},(err,success)=>{
 			if(err){
-				res.send(err);
+				console.log("Not found");
+				console.log(err);
 			}
-			res.json(success)
+			else{
+				console.log(success);
+				res.send(success);
+			}
+
 		});
 	})
 	

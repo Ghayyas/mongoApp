@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css" />
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./node_modules/angular-animate/angular-animate.js"></script>
+    <script src="./node_modules/angular-aria/angular-aria.js"></script>
+    <script src="./node_modules/angular-material/angular-material.js"></script>
+    <script src="./node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="js/appr.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./components/home/home.js"></script>
+    <script src="./components/login/login.js"></script>
+    <script src="./components/signup/signup.js"></script>
+
+</head>
+<body ng-controller="mainCtrl">
+<div id="middle">
+    <ui-view></ui-view>
+</div>
+</body>
+</html>

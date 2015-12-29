@@ -1,0 +1,70 @@
+{
+  "name": "angular-material",
+  "version": "1.0.1",
+  "main": "index",
+  "format": "cjs",
+  "registry": "github",
+  "peerDependencies": {
+    "angular": "^1.4.7",
+    "angular-animate": "^1.4.7",
+    "angular-aria": "^1.4.7"
+  },
+  "jspm": {
+    "dependencies": {
+      "angular": "github:angular/bower-angular@^1.4.7",
+      "angular-animate": "github:angular/bower-angular-animate@^1.4.7",
+      "angular-aria": "github:angular/bower-angular-aria@^1.4.7",
+      "css": "systemjs/plugin-css@^0.1.9"
+    },
+    "shim": {
+      "angular-material": {
+        "deps": []
+      }
+    },
+    "peerDependencies": {}
+  },
+  "homepage": "https://material.angularjs.org",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/angular/material.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/angular/material/blob/master/LICENSE"
+    }
+  ],
+  "keywords": [
+    "angular",
+    "material",
+    "browser",
+    "client-side"
+  ],
+  "bugs": {
+    "url": "https://github.com/angular/material/issues"
+  },
+  "gitHead": "d87cdf49e33b371968913baf8785ddb0b0d93e7c",
+  "description": "This repo is for distribution on `npm` and `bower`. The source for this module is in the [main Angular Material repo](https://github.com/angular/material). Please file issues and pull requests against that repo.",
+  "_id": "angular-material@1.0.1",
+  "scripts": {},
+  "_shasum": "cc4000a1eb2ff6ca16a47d13759919011c7790dd",
+  "_from": "angular-material@latest",
+  "_npmVersion": "2.14.3",
+  "_nodeVersion": "0.12.2",
+  "_npmUser": {
+    "name": "angularcore",
+    "email": "angular-core+npm@google.com"
+  },
+  "dist": {
+    "shasum": "cc4000a1eb2ff6ca16a47d13759919011c7790dd",
+    "tarball": "http://registry.npmjs.org/angular-material/-/angular-material-1.0.1.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "angularcore",
+      "email": "angular-core+npm@google.com"
+    }
+  ],
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/angular-material/-/angular-material-1.0.1.tgz"
+}
