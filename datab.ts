@@ -64,16 +64,18 @@ export = myExports;
 
 function initializeApp(app){
 	app.post('/save', (req,res)=>{
+        console.log(req.body);
 		let user = new userModel({
-			Name: req.body.yourName,
-			UserName: req.body.user_name,
+			Name: req.body.firstName,
+			UserName: req.body.lastName,
 			Password: req.body.password,
-			RepeatPass: req.body.repeatpass,
-			Age: parseInt(req.body.age),
+			RepeatPass: req.body.password2,
+			//Age: parseInt(req.body.age),
 			Gender: req.body.gender,
 				
 		});
 		user.save((err,success)=>{
+            console.log(err || success);
 			if(err){
 				res.send({err : err, message: 'Error', data: null});
 			}
@@ -89,26 +91,30 @@ function initializeApp(app){
 		userModel.findOne({UserName:req.body.name},(err,user )=>{
 			 
             if(err){
-				console.log("Not found");
-				console.log(err);
+                res.send({'success': false, 'message': 'err'});
 			}
-
-			else{
+            
+			if(user){
                 bcrypt.compare(Password, user['Password'], function(err, isMatch) {
                     // if (err) return cb(err);
                     //cb(null, isMatch);
-				    console.log(err);
-				    console.log(isMatch);
-
-                    res.send(user);
-                    
-                    
+                    if(isMatch) {
+                        console.log('1')
+                        res.json({'success': true, 'user': user});
+                    } else {
+                        console.log('1')
+                        res.json({'success': false, 'message': 'Password Not Found'});
+                    }
                 })
                 // user.comparePassword(Password, function(err, success){
 				//     console.log(err + success);
 				//     res.send(err + success);                    
                 // })
+            } else {
+                res.json({'success': false, 'message': 'User Not Found'});     
             }
+            
+           
 
 		});
 	})

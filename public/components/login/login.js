@@ -6,23 +6,27 @@ angular.module('app.signin',[])
 
 	$scope.dataArray = "";
 	$scope.login = function(){
-
-	 $http.post('/senddata',$scope.user).success(function(data){
-		 //console.log(data);
-		 if(data){
+if($scope.user.name == null || $scope.user.pass == null){
+    alert('Please Fill All Field');
+}
+else{
+	 $http.post('/senddata',$scope.user).success(function(data , err){
+         console.log('ddddd ' + JSON.stringify(data.user))
+          if(data.user){
 			 alert("Welcome....");
-             console.log(data);
-              $location.path("/dashboard/"+data._id);
+              $location.path("/dashboard/"+data.user._id);
            //  $state.go('/dashboard/' +data._id);
             
-		 }else{
-			 alert("password not matched")
+		 }
+         
+         if(data.message){
+			 alert(data.message)
 		 }
     })	
    .error(function(data){
 	console.log("Error:" +data);
    });
-
+}
 
 
 

@@ -5,7 +5,7 @@
 	<head>
 	</head>
 	<body>
-		<form action="/save" method="post">
+		<form ng-submit="send()">
 		<input type="text" placeholder="Enter your Name" name="yourName" ng-model="user.firstName">
 		<input type="text" placeholder="Enter your User Name" name="user_name" ng-model="user.lastName">
 		<input type="password" placeholder="Enter your Password" name="password" ng-model="user.password">

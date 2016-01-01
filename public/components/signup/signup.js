@@ -3,10 +3,25 @@ angular.module('app.signup', [])
         
         
         $scope.user = {};
-        $http.post('/save',$scope.user).success(function(data){
+        $scope.send = function(){
+        if($scope.user.password === $scope.user.password2){
+              
+              alert("sucess");
+         $http.post('/save',$scope.user).success(function(data){
+          
+          console.log(data);
+          $state.go('signin');
+          
             
         })
-        
+          }
+
+          else{
+              alert('password not match');
+          }
+          
+
+        }
     });
     
     /*
