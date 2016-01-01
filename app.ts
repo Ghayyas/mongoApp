@@ -1,25 +1,32 @@
 /// <reference path="typings/tsd.d.ts" />
 
 
-import {initializeApp} from "./datab";
+import datab  = require("./datab");
 import express = require("express");
 import mongoose = require('mongoose');
+import bcrpt = require("bcrypt");
 import path = require('path');
 import bodyParser = require('body-parser');
-
+let userRouter = require('./users')
+let port = process.env.PORT || 8080;
 let app = express();
 
 let istatic = path.resolve(__dirname,'public');
+
+
 app.use(express.static(istatic));
 //let login = path.resolve(__dirname, 'public/login.html');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-initializeApp(app);
+   datab.initializeApp(app);
 
 app.get("/", function (req, res) {
 	res.sendFile(istatic + "/index.html");
 });
+
+
+app.use('/users', userRouter)
 
 /*
 app.get('/signup',function(req:express.Request, res:express.Response){
@@ -27,7 +34,16 @@ app.get('/signup',function(req:express.Request, res:express.Response){
 	res.sendFile(signup);
 });
 
+   bcrypt.compare(Password, user['Password'], function(err, isMatch) {
+                 
+				    console.log(err);
+				    console.log(isMatch);
+                    res.json(user);
+                    
+                    
+                })
+
 */
-app.listen(8000,()=>{
+app.listen(port,()=>{
 	console.log('Sever is starting....')
 });

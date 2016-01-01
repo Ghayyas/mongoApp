@@ -21,6 +21,12 @@ angular.module("myapp")
                     templateUrl: "../components/signup/signup.html",
                     controller: "SignUpController"
                 }
+            )
+            .state('dashboard', {
+                    url: "/dashboard/:uId",
+                    templateUrl: "../components/dashboard/dash.html",
+                    controller: "dashBoardCtrl"
+                }
             );
 
         $urlRouterProvider.otherwise('/')

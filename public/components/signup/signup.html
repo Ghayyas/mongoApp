@@ -6,12 +6,12 @@
 	</head>
 	<body>
 		<form action="/save" method="post">
-		<input type="text" placeholder="Enter your Name" name="yourName">
-		<input type="text" placeholder="Enter your User Name" name="user_name">
-		<input type="password" placeholder="Enter your Password" name="password">
-		<input type="password" placeholder="Enter your Passoword Again" name="repeatpass">
-		<input type="radio" name="gender" value="male">Male
-		<input type="radio" name="gender" value="female">female
+		<input type="text" placeholder="Enter your Name" name="yourName" ng-model="user.firstName">
+		<input type="text" placeholder="Enter your User Name" name="user_name" ng-model="user.lastName">
+		<input type="password" placeholder="Enter your Password" name="password" ng-model="user.password">
+		<input type="password" placeholder="Enter your Passoword Again" name="repeatpass" ng-model="user.password2">
+		<input type="radio" name="gender" value="male" ng-model="user.gender">Male
+		<input type="radio" name="gender" value="female" ng-model="user.gender">female
 		<input type="submit" value="sign Up">
 		</form>		
 		</body>
