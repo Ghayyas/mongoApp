@@ -6,7 +6,7 @@ import bcrypt = require("bcrypt-nodejs");
  let uniqueValidator = require("mongoose-unique-validator");
  let  router = express.Router();
  let	SALT_FACTOR	=	10;
-let connect = mongoose.connect('mongodb://localhost/sale');
+let connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
 
 let userSchema = new mongoose.Schema({
 	Name: {type:String, required: true},
