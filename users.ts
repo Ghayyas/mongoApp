@@ -8,7 +8,7 @@ let datab = require("./datab");
 // });
 
 router.get('/:uid', function (req, res) {
-    console.log('usererreer')
+   /// console.log('usererreer')
     datab.userModel.findOne({_id: req.params.uid}, function (err, success) {
         if(err){
         }

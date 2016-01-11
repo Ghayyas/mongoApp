@@ -7,11 +7,16 @@ import mongoose = require('mongoose');
 import bcrpt = require("bcrypt");
 import path = require('path');
 import bodyParser = require('body-parser');
+
+let firebase = require('firebase');
+
 let userRouter = require('./users')
 let port = process.env.PORT || 8080;
 let app = express();
 
 let istatic = path.resolve(__dirname,'public');
+
+
 
 
 app.use(express.static(istatic));

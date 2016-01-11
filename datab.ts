@@ -4,6 +4,7 @@ import express = require('express');
 import mongoose = require('mongoose');
 import bcrypt = require("bcrypt-nodejs");
  let uniqueValidator = require("mongoose-unique-validator");
+ let firebase = require('firebase');
  let  router = express.Router();
  let	SALT_FACTOR	=	10;
 let connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
@@ -12,6 +13,7 @@ let userSchema = new mongoose.Schema({
 	Name: {type:String, required: true},
 	UserName: {type: String, required: true, unique: true},
 	Password: {type: String , required: true},
+    FirebaseToken : {type: String, required: true},
 
 	CreatedOn : {type: Date, default: Date.now()}
 });
@@ -62,22 +64,39 @@ userSchema.pre("save",	function(done)	{
 
 export = myExports;
 
+let firebaseRef = new firebase("https://salesmanapp1.firebaseio.com/");
+
 function initializeApp(app){
 	app.post('/save', (req,res)=>{
         console.log(req.body);
-		let user = new userModel({
+        firebaseRef.createUser({
+        email    : req.body.email,
+        password : req.body.password
+        }, function(error, userData) {
+         if (error) {
+         console.log("Error creating user:", error);
+          } else {
+        console.log("Successfully created user account with uid:", userData.uid);
+         
+        let user = new userModel({
+            
+            
 			Name: req.body.firstName,
+            Email: req.body.email,
 			UserName: req.body.lastName,
 			Password: req.body.password,
 			RepeatPass: req.body.password2,
+            FirebaseToken: userData.uid
 			//Age: parseInt(req.body.age),
-			Gender: req.body.gender,
+			//Gender: req.body.gender,
+            
 				
 		});
 		user.save((err,success)=>{
             console.log(err || success);
 			if(err){
 				res.send({err : err, message: 'Error', data: null});
+                console.log(err);
 			}
 			else{
                 
@@ -85,6 +104,10 @@ function initializeApp(app){
 				res.send({err : null, message: "Data Posted on DataBase", data:success})
 			}
 		});
+      }
+});
+
+		
 	});
 	app.post('/senddata',(req,res)=>{
         let Password = req.body.pass;

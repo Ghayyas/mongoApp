@@ -3,6 +3,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bcrypt = require("bcrypt-nodejs");
 var uniqueValidator = require("mongoose-unique-validator");
+var firebase = require('firebase');
 var router = express.Router();
 var SALT_FACTOR = 10;
 var connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
@@ -10,6 +11,7 @@ var userSchema = new mongoose.Schema({
     Name: { type: String, required: true },
     UserName: { type: String, required: true, unique: true },
     Password: { type: String, required: true },
+    FirebaseToken: { type: String, required: true },
     CreatedOn: { type: Date, default: Date.now() }
 });
 userSchema.plugin(uniqueValidator);
@@ -56,25 +58,38 @@ var myExports = {
     userModel: userModel,
     initializeApp: initializeApp
 };
+var firebaseRef = new firebase("https://salesmanapp1.firebaseio.com/");
 function initializeApp(app) {
     app.post('/save', function (req, res) {
         console.log(req.body);
-        var user = new userModel({
-            Name: req.body.firstName,
-            UserName: req.body.lastName,
-            Password: req.body.password,
-            RepeatPass: req.body.password2,
-            //Age: parseInt(req.body.age),
-            Gender: req.body.gender,
-        });
-        user.save(function (err, success) {
-            console.log(err || success);
-            if (err) {
-                res.send({ err: err, message: 'Error', data: null });
+        firebaseRef.createUser({
+            email: req.body.email,
+            password: req.body.password
+        }, function (error, userData) {
+            if (error) {
+                console.log("Error creating user:", error);
             }
             else {
-                console.log(success);
-                res.send({ err: null, message: "Data Posted on DataBase", data: success });
+                console.log("Successfully created user account with uid:", userData.uid);
+                var user = new userModel({
+                    Name: req.body.firstName,
+                    Email: req.body.email,
+                    UserName: req.body.lastName,
+                    Password: req.body.password,
+                    RepeatPass: req.body.password2,
+                    FirebaseToken: userData.uid
+                });
+                user.save(function (err, success) {
+                    console.log(err || success);
+                    if (err) {
+                        res.send({ err: err, message: 'Error', data: null });
+                        console.log(err);
+                    }
+                    else {
+                        console.log(success);
+                        res.send({ err: null, message: "Data Posted on DataBase", data: success });
+                    }
+                });
             }
         });
     });

@@ -1,7 +1,8 @@
 angular.module('app.signup', [])
-    .controller("SignUpController", function ($scope, $http, $state, $location) {
+    .controller("SignUpController", function ($scope, $http, $state, $location, $rootScope) {
         
-        
+       $rootScope.currentUser = {};
+
         $scope.user = {};
         $scope.send = function(){
         if($scope.user.password === $scope.user.password2){
@@ -10,6 +11,10 @@ angular.module('app.signup', [])
          $http.post('/save',$scope.user).success(function(data){
           
           console.log(data);
+          
+          //localStorage.setItem('token',data.data.FirebaseToken)
+          //console.log(data.data.FirebaseToken);
+          $rootScope.currentuser = data.data;
           $state.go('signin');
           
             

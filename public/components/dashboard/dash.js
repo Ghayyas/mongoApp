@@ -1,9 +1,12 @@
 angular.module('app.dash',[])
-.controller('dashBoardCtrl',function($http, $stateParams,$scope){
+.controller('dashBoardCtrl',function($http, $stateParams,$scope,$location,$state, $window){
      var uId = $stateParams.uId;
-     $scope.user = {};
+     
+     $scope.userSync = function(){
+             var firebaseLocalToken = localStorage.getItem("token")
+          $scope.user = {};
      $scope.Welcome = "hellllllo";
-        $http.get("/users/" + uId).then(
+        $http.get("/users/" + uId + firebaseLocalToken).then(
             function (data) {
                 console.log("data" + JSON.stringify(data));
                  
@@ -13,11 +16,15 @@ angular.module('app.dash',[])
             function (err) {
                console.log(err)
             })
-    })
-    /*
-    .filter('capitalize', function () {
-        return function (input) {
-            return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+          }
+          $scope.userSync();
+           
+          
+        $scope.logOut = function(){
+            localStorage.removeItem('token');
+             $window.location.reload();
+            $state.go('signin')
         }
-})
-*/
+
+
+});     

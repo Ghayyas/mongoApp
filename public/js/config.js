@@ -14,6 +14,7 @@ angular.module("myapp")
                     url: "/signin",
                     templateUrl: "../components/login/login.html",
                     controller: "SignInController"
+                    
                 }
             )
             .state('signup', {
@@ -25,10 +26,22 @@ angular.module("myapp")
             .state('dashboard', {
                     url: "/dashboard/:uId",
                     templateUrl: "../components/dashboard/dash.html",
-                    controller: "dashBoardCtrl"
+                    controller: "dashBoardCtrl",
+                    loginCompulsory: true
                 }
             );
 
         $urlRouterProvider.otherwise('/')
 
-    });
+    })
+    
+    .run(function($rootScope, $state){
+        $rootScope.$on("$stateChangeStart",function(event, toState){
+            var firebaseToken = localStorage.getItem('token')
+            if(toState.loginCompulsory && !firebaseToken){
+                event.preventDefault();
+                $state.go('signin');
+            }
+        })
+    })
+    
