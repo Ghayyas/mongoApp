@@ -118,6 +118,10 @@ function initializeApp(app) {
             }
         });
     });
+    /*
+    app.get('/senddata',(req,res)=>{
+        
+    })*/
 }
 module.exports = myExports;
 /*                   success.comparePassword(req.body.pass, function(err, isMatch) {

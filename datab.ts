@@ -141,6 +141,10 @@ function initializeApp(app){
 
 		});
 	})
+    /*
+    app.get('/senddata',(req,res)=>{
+        
+    })*/
 	
 
 }

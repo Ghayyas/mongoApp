@@ -5,13 +5,14 @@ angular.module('app.dash',[])
      $scope.userSync = function(){
              var firebaseLocalToken = localStorage.getItem("token")
           $scope.user = {};
-     $scope.Welcome = "hellllllo";
-        $http.get("/users/" + uId + firebaseLocalToken).then(
+          $scope.Welcome = "hellllllo";
+          $http.get("/users/" + uId).then(
             function (data) {
-                console.log("data" + JSON.stringify(data));
+                $scope.user = data.data;
+                console.log("data" + JSON.stringify(data.data));
                  
-               $scope.user = data.data;
-               console.log('scoe: ' + JSON.stringify( $scope.user) )
+               //$scope.user = data.data;
+               //console.log('scoe: ' + JSON.stringify( $scope.user) )
             },
             function (err) {
                console.log(err)
