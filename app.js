@@ -5,7 +5,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var firebase = require('firebase');
 var userRouter = require('./users');
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8000;
 var app = express();
 var istatic = path.resolve(__dirname, 'public');
 app.use(express.static(istatic));

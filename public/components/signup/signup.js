@@ -7,10 +7,11 @@ angular.module('app.signup', [])
         $scope.send = function(){
         if($scope.user.password === $scope.user.password2){
               
-              alert("sucess");
-         $http.post('/save',$scope.user).success(function(data){
+         console.log("sucess");
+         
+         $http.post('/signup',$scope.user).success(function(data){
           
-          console.log(data);
+          console.log('http post ', data);
           
           //localStorage.setItem('token',data.data.FirebaseToken)
           //console.log(data.data.FirebaseToken);

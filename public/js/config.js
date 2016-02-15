@@ -27,6 +27,33 @@ angular.module("myapp")
                     url: "/dashboard/:uId",
                     templateUrl: "../components/dashboard/dash.html",
                     controller: "dashBoardCtrl",
+                    loginCompulsory: true,
+                    
+                    }
+                
+            )
+              .state('company', {
+                    url: "/company",
+                    templateUrl: "../components/companies/company.html",
+                    controller: "companyCtrl",
+                    loginCompulsory: true
+                   })
+            .state('salesMan', {
+                    url: "/addsales",
+                    templateUrl: "../components/salesMan/sales.html",
+                    controller: "salesCtrl",
+                    loginCompulsory: true
+                }
+            ).state('companylist', {
+                    url: "/companylist",
+                    templateUrl: "../components/companies/showcompany.html",
+                    controller: "showCompanyCtrl",
+                    loginCompulsory: true
+                }
+            ).state('salesmanlist', {
+                    url: "/saleslist",
+                    templateUrl: "../components/salesMan/allsalesman.html",
+                    controller: "salesmanCtrl",
                     loginCompulsory: true
                 }
             );

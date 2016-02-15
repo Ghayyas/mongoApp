@@ -11,7 +11,8 @@ import bodyParser = require('body-parser');
 let firebase = require('firebase');
 
 let userRouter = require('./users')
-let port = process.env.PORT || 8080;
+
+let port = process.env.PORT || 8000;
 let app = express();
 
 let istatic = path.resolve(__dirname,'public');
@@ -24,12 +25,11 @@ app.use(express.static(istatic));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-   datab.initializeApp(app);
+datab.initializeApp(app);
 
 app.get("/", function (req, res) {
 	res.sendFile(istatic + "/index.html");
 });
-
 
 app.use('/users', userRouter)
 

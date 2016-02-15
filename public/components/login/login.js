@@ -10,8 +10,8 @@ angular.module('app.signin',[])
     alert('Please Fill All Field');
 }
 else{
-	 $http.post('/senddata',$scope.user).success(function(data, err){
-         console.log('ddddd ' + JSON.stringify(data.user))
+	 $http.post('/login',$scope.user).success(function(data, err){
+         console.log('login data ' + JSON.stringify(data.user))
           if(data.user){
 			 
              localStorage.setItem('token',data.user.FirebaseToken);
@@ -21,7 +21,7 @@ else{
              
              
               $location.path("/dashboard/"+data.user._id);
-           //  $state.go('/dashboard/' +data._id);
+             //$state.go('/dashboard/' +data._id);
             
 		 }
          
