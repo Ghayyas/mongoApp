@@ -124,20 +124,25 @@ function initializeApp(app) {
                 console.log("Error from List company", err);
                 res.json({ success: false, "msg": 'Internal Error', err: err });
             }
-            else if (!data) {
-                console.log("Company not Found..", data);
-                res.json({ success: false, "msg": "company not found", data: data });
-            }
             else {
-                console.log("Success", data);
-                res.json({ success: true, "msg": "Company Found", data: data });
+                //var emptyArray : any = [];
+                //var cd = emptyArray == Array.isArray(null)
+                //console.log('cd is',!cd);
+                if (data == Array.isArray(null)) {
+                    console.log("Company not Found..", data);
+                    res.json({ success: false, "msg": "company not found", data: null });
+                }
+                else {
+                    console.log("Success", data);
+                    res.json({ success: true, "msg": "Company Found", data: data });
+                }
             }
         });
     });
     app.post('/salesman', function (req, res) {
         console.log('/salesman', req.body);
         var sales = new salesman({
-            ordersPlace: req.body.orderplace,
+            //ordersPlace : req.body.orderplace,
             sName: req.body.sName,
             sEmail: req.body.sEmail,
             spass: req.body.spass,
@@ -158,13 +163,15 @@ function initializeApp(app) {
             if (err) {
                 console.log('Recieveing err', err);
             }
-            else if (!data) {
-                console.log("data not found", data);
-                res.json({ success: false, "msg": 'Data not found', data: data });
-            }
             else {
-                console.log("Success...", data);
-                res.json({ success: true, "msg": "Data Successs", data: data });
+                if (data == Array.isArray(null)) {
+                    console.log("data not found", data);
+                    res.json({ success: false, "msg": 'Data not found', data: data });
+                }
+                else {
+                    console.log("Success...", data);
+                    res.json({ success: true, "msg": "Data Successs", data: data });
+                }
             }
         });
     });

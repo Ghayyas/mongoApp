@@ -138,27 +138,35 @@ function initializeApp(app){
         }
         })
     })
+ 
 
     app.post('/companyList',(req,res)=>{
-        Company.find({FirebaseToken: req.body.token},(err,data)=>{
+        Company.find({FirebaseToken: req.body.token},(err,data:any)=>{
             if(err){
                 console.log("Error from List company",err);
                 res.json({success: false, "msg": 'Internal Error', err:err})
             }
-            else if(!data){
+         
+            else{ 
+                   //var emptyArray : any = [];
+    
+                     //var cd = emptyArray == Array.isArray(null)
+                        //console.log('cd is',!cd);
+              if(data == Array.isArray(null)){
                 console.log("Company not Found..",data);
-                res.json({success: false, "msg": "company not found", data:data})
+                res.json({success: false, "msg": "company not found", data:null})
             }
-            else{
+            else {
                 console.log("Success", data);
                 res.json({success: true, "msg": "Company Found", data:data})
             }
+        }
         })
     })
     app.post('/salesman',(req,res)=>{
         console.log('/salesman', req.body);
         let sales = new salesman({
-        ordersPlace : req.body.orderplace,
+        //ordersPlace : req.body.orderplace,
         sName: req.body.sName,
         sEmail: req.body.sEmail,
         spass: req.body.spass,
@@ -180,18 +188,21 @@ function initializeApp(app){
     })
     
     app.post('/allsalesman',(req,res)=>{
-        salesman.find({FirebaseToken: req.body.token},(err,data)=>{
+        salesman.find({FirebaseToken: req.body.token},(err,data:any)=>{
             if(err){
                 console.log('Recieveing err',err)
             }
-            else if(!data){
+            else{
+
+             if(data == Array.isArray(null)){
                 console.log("data not found", data);
                 res.json({success:false,"msg": 'Data not found',data:data })
             }
-            else{
+            else {
                 console.log("Success...", data);
                 res.json({success: true, "msg":"Data Successs", data:data})
             }
+        }
         })
     })
 

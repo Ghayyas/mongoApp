@@ -3,6 +3,7 @@ angular.module('app.showCompany',[])
     var token = localStorage.getItem('token');
     var abc = {token: token}
     $http.post('/companyList',abc).then(function(success){
+        $scope.ac = success.data.data
         console.log("success",success)
     },function(err){
         console.log("Error", err)
