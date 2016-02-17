@@ -1,1 +1,39 @@
 My oder list are..
+<!--<ul>
+    <li ng-repeat="datar in data">{{datar.sName}}
+        <ul> Orders Are : <li ng-repeat="orders in datar.ordersPlace track by $index">
+            {{orders}}
+        </li></ul>
+        <ul>
+            Quantities are: <li ng-repeat="quantity in datar.quantity track by $index">
+            {{quantity}}
+        </li></ul>
+       </li>
+
+</ul>-->
+sdsd{{q}}
+<table class="table table-bordered">
+    <tr>
+        <th>Client Name</th>
+        <th>Client Orders</th>
+        <th>Orders Quantity</th>
+        </tr>
+    <tr ng-repeat="datar in data">
+        <td>{{datar.sName}}</td>  <!--//ng-repeat="orders in datar.ordersPlace track by $index"-->
+       <td>
+           <ul><li ng-repeat="orders in datar.ordersPlace track by $index">{{orders}}</li></ul>
+           <div ng-show="aer">
+           <ul><li>{{cd}}</li></ul>
+       </div>
+       </td>
+
+        <td>
+           <ul><li ng-repeat="quantity in datar.quantity track by $index">{{quantity}}</li></ul>
+       <div ng-show="aer">
+           <ul><li>{{q}}</li></ul>
+       </div>
+       
+       </td>
+    
+    <!--<td ng-repeat="quantity in datar.quantity track by $index"><ul><li>{{quantity}}</li></ul></td></tr>-->
+</table>
