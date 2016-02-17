@@ -1,5 +1,5 @@
 angular.module('app.signup', [])
-    .controller("SignUpController", function ($scope, $http, $state, $location, $rootScope) {
+    .controller("SignUpController", function ($scope, $http, $state, $location, $rootScope,local) {
         
        $rootScope.currentUser = {};
 
@@ -9,7 +9,7 @@ angular.module('app.signup', [])
               
          console.log("sucess");
          
-         $http.post('/signup',$scope.user).success(function(data){
+         $http.post(local+'/signup',$scope.user).success(function(data){
           
           console.log('http post ', data);
           

@@ -34,12 +34,19 @@ let CompanySchema = new mongoose.Schema({
 let salesMan = new mongoose.Schema({
    CompanyName: [{type: mongoose.Schema.Types.ObjectId, ref : 'Company'}],
    admin: {type: mongoose.Schema.Types.ObjectId, ref: "userModel"},
-   ordersPlace : [{type: String}],
+   ordersPlace : [],
+   quantity: [],
    FirebaseToken: String,
    sName: {type: String},
+   cName: String,
+   CompanyID : String,
    sEmail: {type: String, required: true, unique: true},
    spass: {type: String, required: true}
 });
+
+
+
+
 
 salesMan.plugin(uniqueValidator);
 
@@ -120,26 +127,134 @@ function initializeApp(app){
                                 console.log('s',e1 || 'd',d1);
 
                      })
-                     salesman.find({},(err,data)=>{
-                         if(err){
-                             console.log(err);
-                         }
-                         else if(!data){
-                             console.log('data',data)
-                         }
-                         else{
-                      salesman.update({$push:{CompanyName: myCompany._id.toString()}},(err,suc)=>{
-                      console.log("err", err || 'success', suc)
-                        });                               
-                         }
-                     })
+                    //  salesman.find({},(err,data)=>{
+                    //      if(err){
+                    //          console.log(err);
+                    //      }
+                    //      else if(!data){
+                    //          console.log('data',data)
+                    //      }
+                    //      else{
+                    //   salesman.update({$push:{CompanyName: myCompany._id.toString()}},(err,suc)=>{
+                    //   console.log("err", err || 'success', suc)
+                    //     });                               
+                    //      }
+                    //  })
 
                 res.json({success: true, "message": "Successfully Saved Company", data: success})
         }
         })
+        salesman.update({$push:{CompanyName: myCompany._id.toString()}},(err,data)=>{
+            if(err){
+                console.log("err",err);
+            }
+            else{
+                console.log("success",data)
+            }
+        })
     })
+           
+ app.post('/salessign',(req,res)=>{
+   salesman.findOne({
+        sEmail: req.body.sEmail,
+        spass: req.body.spass},(err,data)=>{
+          if(err){
+              console.log('singin eerr',err);
+              res.json({success: false, "msg":"Internal Error", err:err})
+          }
+          else{
+              if(!data){
+                  console.log('userName not Found..',data);
+                  res.json({success: false,"msg": "invalid Id or Password", data:data})
+              }
+              else{
+                  console.log('got data',data)
+                  res.json({success: true, 'msg': 'data successs', data:data})
+              }
+          }    
+        })
  
-
+         
+ });
+ 
+    app.post('/ordersend',(req,res)=>{
+        // salesman.findOne({orderPlace:req.body.order,quantity:req.body.quantity},(err,data)=>{
+        //     if(err){
+        //         console.log(err);
+        //         res.json({success: false, "msg": "internal Error",err:err})
+        //     }
+        //     else {
+        //         if(!data){
+        //         salesman.update({ordersPlace: req.body.order,quantity: req.body.quantity},(err,data)=>{
+        //     if(err){
+        //         console.log(err);
+        //         res.json({success: false,"msg":"Internal Error",err:err})
+        //     }
+        //     else{
+        //         if(!data){
+        //             console.log("data not recived.." ,data);
+        //             res.json({success: false,"msg":"data not send",data:data})
+        //         }
+        //         else{
+                    
+        //             console.log('data successs',data);
+        //             res.json({success:true, "msg":'Msg Send',data:data})
+        //         }
+        //     }
+        //    })         
+        //         }
+        //         else{}
+        //     }
+        // }
+        
+        salesman.findOne({_id:req.body.ab},(err,data)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                if(!data){
+                    console.log("no data",data);
+                }
+                else{
+                    
+                    console.log("ID found..", data)
+                    salesman.findByIdAndUpdate(req.body.ab,{$push:{ordersPlace: req.body.order,quantity:req.body.quantity}},(err,data)=>{
+                      if(err){
+                console.log(err);
+                res.json({success: false,"msg":"Internal Error",err:err})
+            }
+            else{
+                if(!data){
+                    console.log("data not recived.." ,data);
+                    res.json({success: false,"msg":"data not send",data:data})
+                }
+                else{
+                    
+                    console.log('data successs',data);
+                    res.json({success:true, "msg":'Msg Send',data:data})
+                   
+                }
+            }
+        });   
+                }
+            }
+        })
+      
+    })
+      app.get('/getorders',(req,res)=>{
+          console.log('acesd',req.query.token)
+          salesman.find({FirebaseToken: req.query.token},(err,data)=>{
+              if(err){
+                  console.log(err);
+                  res.json({success:false,err:err})
+              }
+              else{
+                  console.log('asdff',data);
+                  res.json({success:true,data:data})
+              }
+          })
+      })
+ 
     app.post('/companyList',(req,res)=>{
         Company.find({FirebaseToken: req.body.token},(err,data:any)=>{
             if(err){
@@ -165,25 +280,47 @@ function initializeApp(app){
     })
     app.post('/salesman',(req,res)=>{
         console.log('/salesman', req.body);
-        let sales = new salesman({
-        //ordersPlace : req.body.orderplace,
-        sName: req.body.sName,
-        sEmail: req.body.sEmail,
-        spass: req.body.spass,
-        FirebaseToken: req.body.token 
-        })
-        
-        sales.save((err,success)=>{
+        Company.find({FirebaseToken:req.body.token},(err,success)=>{
             if(err){
-                console.log("Sales man Err" ,err);
+                console.log("got err",err);
             }
             else{
-                console.log("Sales man saved.." ,success);
+                if(!success){
+                    console.log("company not found", success);
+                }
+                else{
+                    console.log("Company FOund.." ,success);
+                let sales = new salesman({
+                //ordersPlace : req.body.orderplace,
+                sName: req.body.sName,
+                sEmail: req.body.sEmail,
+                spass: req.body.spass,
+                cName: req.body.cName,
+                FirebaseToken: req.body.token
+                //CompanyID: req.body.cID 
+                })
               
-                res.json({success: true, "message": "Sales Man Saved Successfully" , data: success})
-                
-            }
-        }) 
+                sales.save((err,success)=>{
+                    if(err){
+                        console.log('err',err)
+                    }
+                    else {
+                        console.log("success",success)
+                    }
+                })
+                 Company.update({$push:{salesMan:sales._id.toString()}},(err,success)=>{
+                    if(err){
+                        console.log("unable to update Sales man ", err);
+                    }
+                    else{
+                        console.log("success Fully saved Sales man", success);
+                    }
+                })
+                                
+                        }
+                    }
+                })
+     
         
     })
     
@@ -199,7 +336,7 @@ function initializeApp(app){
                 res.json({success:false,"msg": 'Data not found',data:data })
             }
             else {
-                console.log("Success...", data);
+                console.log("Successsfsdf...", data);
                 res.json({success: true, "msg":"Data Successs", data:data})
             }
         }

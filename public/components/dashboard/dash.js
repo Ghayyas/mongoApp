@@ -1,12 +1,12 @@
 angular.module('app.dash',[])
-.controller('dashBoardCtrl',function($http, $stateParams,$scope,$location,$state, $window){
+.controller('dashBoardCtrl',function($http, $stateParams,$scope,$location,$state, $window,local){
      var uId = $stateParams.uId;
      
      $scope.userSync = function(){
              var firebaseLocalToken = localStorage.getItem("token")
           $scope.user = {};
           $scope.Welcome = "hellllllo";
-          $http.get("/users/" + uId).then(
+          $http.get( local+"/users/" + uId).then(
             function (data) {
                 $scope.user = data.data;
                 console.log("data" + JSON.stringify(data.data));

@@ -8,3 +8,4 @@
 /// <reference path="serve-static/serve-static.d.ts" />
 /// <reference path="bcrypt/bcrypt.d.ts" />
 /// <reference path="bcrypt-nodejs/bcrypt-nodejs.d.ts" />
+/// <reference path="cors/cors.d.ts" />

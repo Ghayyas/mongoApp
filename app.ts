@@ -7,7 +7,7 @@ import mongoose = require('mongoose');
 import bcrpt = require("bcrypt");
 import path = require('path');
 import bodyParser = require('body-parser');
-
+import cors = require('cors');
 let firebase = require('firebase');
 
 let userRouter = require('./users')
@@ -18,6 +18,7 @@ let app = express();
 let istatic = path.resolve(__dirname,'public');
 
 
+app.use(cors());
 
 
 app.use(express.static(istatic));

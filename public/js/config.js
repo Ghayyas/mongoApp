@@ -56,11 +56,18 @@ angular.module("myapp")
                     controller: "salesmanCtrl",
                     loginCompulsory: true
                 }
+            ).state('orderlist', {
+                    url: "/orderlist",
+                    templateUrl: "../components/orderlist/orderlist.html",
+                    controller: "getCtrl",
+                    loginCompulsory: true
+                }
             );
 
         $urlRouterProvider.otherwise('/')
 
     })
+    .constant('local','http://localhost:8000')
     
     .run(function($rootScope, $state){
         $rootScope.$on("$stateChangeStart",function(event, toState){
