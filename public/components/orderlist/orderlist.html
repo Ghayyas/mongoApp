@@ -1,4 +1,10 @@
-My oder list are..
+<style>
+    ul{
+     list-style:none;
+}
+    </style>
+<div class="container">
+<p style="margin-top: 23px;"><i>Your Order List are: </i></p>
 <!--<ul>
     <li ng-repeat="datar in data">{{datar.sName}}
         <ul> Orders Are : <li ng-repeat="orders in datar.ordersPlace track by $index">
@@ -11,29 +17,40 @@ My oder list are..
        </li>
 
 </ul>-->
-sdsd{{q}}
+
 <table class="table table-bordered">
     <tr>
+        <th>SNo#</th>
         <th>Client Name</th>
         <th>Client Orders</th>
         <th>Orders Quantity</th>
+         <th>Location</th>
         </tr>
-    <tr ng-repeat="datar in data">
+    <tr ng-repeat="datar in data" >
+        <td>{{$index+1}}</td>
         <td>{{datar.sName}}</td>  <!--//ng-repeat="orders in datar.ordersPlace track by $index"-->
-       <td>
+       <td> 
+           <!--<a href="#">Click here to show Orders</a>-->
            <ul><li ng-repeat="orders in datar.ordersPlace track by $index">{{orders}}</li></ul>
            <div ng-show="aer">
-           <ul><li>{{cd}}</li></ul>
+           <ul><li ng-repeat="ordr in msg">{{ordr.orders}}</li></ul>
        </div>
        </td>
-
         <td>
+            <!--<a href="#">Click here to see Quanties</a>-->
            <ul><li ng-repeat="quantity in datar.quantity track by $index">{{quantity}}</li></ul>
        <div ng-show="aer">
-           <ul><li>{{q}}</li></ul>
+           <ul><li ng-repeat="ord in msg">{{ord.quantity}}</li></ul>
        </div>
        
        </td>
+       <td><a href="javascirpt:void()">Click to see the Map</a></td>
+       
+    </tr>
     
-    <!--<td ng-repeat="quantity in datar.quantity track by $index"><ul><li>{{quantity}}</li></ul></td></tr>-->
+    <!--<td ng-repeat="quantity in datar.quantity track by $index"><ul><li>{{quantity}}</li></ul></td>-->
+    
+  
 </table>
+
+    </div>

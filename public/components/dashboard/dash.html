@@ -1,4 +1,119 @@
-<div>
+<md-toolbar class="md-tall">
+      <div layout="row" layout-align="end start">
+      <md-button class="material-icons" ng-click="logOut()">power_settings_new</md-button>
+      </div>
+      <h2 class="md-toolbar-tools">
+        <span>Wellcome to Your Dashboard </span>
+       
+      </h2>
+    
+      <div layout="row" layout-align="center center">
+          <p>  {{user.Name}}</p>
+      </div>
+        <div  layout="row" layout-align="end end">
+    <i style="margin-right: 16px;">{{user.Email}}</i>
+      </div>
+    </md-toolbar>
+
+<md-content flex layout-padding ng-show="companyshow">
+  
+     <md-card style="width: 535px; margin-left: 328px; margin-top: 132px;">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Create Company</span>
+            <span class="md-subhead">Create Your Own Company</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-md card-media"></div>
+
+          </md-card-title-media>
+
+        </md-card-title>
+
+        <md-card-actions layout="row" layout-align="end center">
+                               <img src="./images/companyown.jpg" alt="Images not avalible">
+        </md-card-actions>
+        <md-card-actions>
+          <md-button ui-sref="orderlist" class="md-raised md-primary">Click to Create</md-button>
+        </md-card-actions>
+      </md-card>
+      
+</md-content>
+
+<md-content flex layout-padding>
+  
+     <md-card style="width: 535px;margin-top: 132px;">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Your Company</span>
+            <span class="md-subhead">See Your Companies Below</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-md card-media"></div>
+
+          </md-card-title-media>
+
+        </md-card-title>
+
+        <md-card-actions layout="row" layout-align="end center">
+                               <img src="./images/company-big.jpg" alt="Images not avalible">
+        </md-card-actions>
+        <md-card-actions>
+          <md-button ui-sref="companylist" class="md-raised md-primary">Show My Company</md-button>
+        </md-card-actions>
+      </md-card>
+      
+</md-content>
+<md-content flex layout-padding>
+  
+     <md-card style="width: 535px;float: right;margin-top: 132px;">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Your Sales Man</span>
+            <span class="md-subhead">See Your Sales Man Below</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-md card-media"></div>
+
+          </md-card-title-media>
+
+        </md-card-title>
+
+        <md-card-actions layout="row" layout-align="end center">
+                               <img src="./images/Our-Company.jpg" alt="Images not avalible">
+        </md-card-actions>
+        <md-card-actions>
+          <md-button ui-sref="salesmanlist" class="md-raised md-primary">Show My Sales Man</md-button>
+        </md-card-actions>
+      </md-card>
+      
+</md-content>
+<md-content flex layout-padding>
+  
+     <md-card style="width: 535px;float: left; margin-top: 132px;">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Your Orders</span>
+            <span class="md-subhead">See Your Orders Below</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-md card-media"></div>
+
+          </md-card-title-media>
+
+        </md-card-title>
+
+        <md-card-actions layout="row" layout-align="end center">
+                               <img src="./images/orders.png" alt="Images not avalible">
+        </md-card-actions>
+        <md-card-actions>
+          <md-button ui-sref="orderlist" class="md-raised md-primary">Show My Orders</md-button>
+        </md-card-actions>
+      </md-card>
+      
+</md-content>
+
+<!--<div>
     <h1>This is my Dashboard page</h1>
     <h2>{{user.Name}}</h2>
     <i>Your Email is {{user.Email}}</i>
@@ -7,10 +122,60 @@
     {{Welcome}}
     
     <button ng-click="logOut()">Click here to Log Out</button>
-    <button ui-sref="company">Go to Company page </button>
+    
+    <button ui-sref="company" ng-show="companyshow">Create Company</button>
     <!--<button ng-click="gotoCompany()">click here to go</button>-->
 
-    <button ui-sref="companylist">Show My Company</button>
+    <!--<button ui-sref="companylist">Show My Company</button>
     <button ui-sref="salesmanlist">Show My Sales Man</button>
         <button ui-sref="orderlist">Show orders</button>
-</div>
+</div>-->
+
+<footer class="footer-distributed">
+
+                <div class="footer-left">
+
+                    <h3>Sales <span> Management App</span></h3>
+
+
+
+                </div>
+
+                <div class="footer-center">
+
+                    <div>
+                        <i class="fa fa-map-marker"></i>
+                        <p><span>Ramsha Enterprises </span> Clifton</p>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-phone"></i>
+                        <p>09007802 (5 lines)</p>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-envelope"></i>
+                        <p><a href="mailto:info@saylaniwelfare.com">info@sales.com</a></p>
+                    </div>
+
+                </div>
+
+                <div class="footer-right">
+
+                    <p class="footer-company-about">
+                        <span>About the Developer</span>
+                        Ghayyas Mubashir is Young Energatic Mobile and Web Application Developer. He is Studing Software Engineering From Virtual Universtiy and Also Taking Course of Mobile and Web Application Development Under the Supervison of Sir Zia Khan(Microsoft Most valuable Professional) At Saylani Welfare International
+                    </p>
+
+
+                    <div class="footer-icons">
+
+                        <a href="https://www.facebook.com/ghayyas94" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.twitter.com/mubashirghayyas" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="https://www.github.com/ghayyas" target="_blank"><i class="fa fa-github"></i></a>
+
+                    </div>
+
+                </div>
+                <p class="footer-company-name" >Copyright &copy; 2016</p>
+            </footer>

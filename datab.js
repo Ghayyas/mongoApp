@@ -6,8 +6,8 @@ var uniqueValidator = require("mongoose-unique-validator");
 var firebase = require('firebase');
 var router = express.Router();
 var SALT_FACTOR = 10;
-// let connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
-var connect = mongoose.connect('mongodb://localhost/salesapp');
+var connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
+//let connect = mongoose.connect('mongodb://localhost/salesapp');
 var userSchema = new mongoose.Schema({
     Name: { type: String, required: true },
     UserName: { type: String, required: true, unique: true },
@@ -36,7 +36,9 @@ var salesMan = new mongoose.Schema({
     cName: String,
     CompanyID: String,
     sEmail: { type: String, required: true, unique: true },
-    spass: { type: String, required: true }
+    spass: { type: String, required: true },
+    lat: String,
+    long: String
 });
 salesMan.plugin(uniqueValidator);
 var salesman = mongoose.model('salesman', salesMan);
@@ -241,6 +243,25 @@ function initializeApp(app) {
             }
         });
     });
+    app.post('/slocation', function (req, res) {
+        console.log('Location getting', req.body);
+        salesman.find({ FirebaseToken: req.body.token }, function (err, data) {
+            if (err) {
+                console.log("getting error", err);
+            }
+            else {
+                console.log('geeting response', data);
+                salesman.update({ $push: { lat: req.body.lat, long: req.body.long } }, function (err, data) {
+                    console.log("data", data);
+                    res.json({ success: true, "msg": "successfully Recieved Data", data: data });
+                });
+                console.log("data is", data);
+            }
+        });
+    });
+    // app.get('/scurrentLocation',(req,res)=>{
+    //     console.log("getting body",req.query.body);
+    // })
     app.post('/salesman', function (req, res) {
         console.log('/salesman', req.body);
         Company.find({ FirebaseToken: req.body.token }, function (err, success) {

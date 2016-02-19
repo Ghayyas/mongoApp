@@ -32,6 +32,15 @@ angular.module("myapp")
                     }
                 
             )
+              .state('location', {
+                    url: "/location",
+                    templateUrl: "../components/location/location.html",
+                    controller: "MarkerController",
+                   // loginCompulsory: true,
+                    
+                    }
+                
+            )
               .state('company', {
                     url: "/company",
                     templateUrl: "../components/companies/company.html",

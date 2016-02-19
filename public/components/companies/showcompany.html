@@ -1,5 +1,19 @@
+
+<div class="container">
 <h3>Company List</h3>
 
-<ul><li ng-repeat="ac in ac"> Name: {{ac.CompanyName}}  Address: {{ac.CompanyAddress}}</li></ul>
+<table class="table table-bordered">
+<tr><th>SNO#</th><th>Company Name</th><th>Company Address</th><th>Add Sales Man</th></tr>
+<tr ng-repeat="ac in ac">
+    <td>{{$index+1}}</td><td>{{ac.CompanyName}}</td>
+    <td>{{ac.CompanyAddress}}</td>
+    <td> <button ng-click="showTabDialog()" class="btn btn-success">
+        <i class="material-icons">
+        group_add</i> Add Your Sales Man</button>
+        </td>
+</tr>
+</table>
+</div>
+<!--<ul><li ng-repeat="ac in ac"> Name: {{ac.CompanyName}}  Address: {{ac.CompanyAddress}}</li></ul>
 
- <button ui-sref="salesMan">add sales Man</button>
+ <button ui-sref="salesMan">add sales Man</button>-->

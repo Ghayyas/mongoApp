@@ -1,3 +1,49 @@
+<div layout="column" layout-align="center center" style="position: relative; margin-top: 62px;">
+ <md-whiteframe class="md-whiteframe-3dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
+  <md-toolbar>
+      <div class="md-toolbar-tools">
+        
+         <span>Sign IN</span>
+
+        <span flex></span>
+                <md-button class="material-icons md-36 md-fab" ui-sref="signup">person_add</md-button>
+      </div>
+          <form ng-submit="login()"> 
+     <md-content layout="column" layout-padding>
+
+      <md-input-container>
+        <label>User Name</label>
+        <input type="text" ng-model="user.name">
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input type="password" ng-model="user.pass">
+      </md-input-container>
+
+  </md-content>
+  <div layout="row" layout-align="center center">
+        <md-button type="submit" class="md-primary"> Login
+        </md-button>
+  </div>
+        </form>
+    </md-toolbar>
+
+  </md-whiteframe>
+     
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <html>
 	<title>
 		Sign in Page
@@ -6,11 +52,11 @@
 	</head>
 	<body>
 	<!--@nee$@123456-->
-		<form ng-submit="login()" method="get">
+	<!--	<form ng-submit="login()" method="get">
 		<input type="text" placeholder="Enter your User Name" name="username" ng-model="user.name">
 		<input type="password" placeholder="Enter your Password" name="password" ng-model="user.pass">
 		<input type="submit" value="Login">
 		</form>		
 		</body>
 		
-</html>
+</html>-->

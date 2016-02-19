@@ -1,4 +1,28 @@
+
+<div class="container">
+<h3>Sales Man List</h3>
+
+<table class="table table-bordered">
+<tr><th>SNO#</th><th>Sales Man Name</th><th>Sales Man Email</th><th>Sales Man Password</th></tr>
+<tr ng-repeat="ac in ac">
+    <td>{{$index+1}}</td>
+    <td>{{ac.sName}}</td>
+    <td>{{ac.sEmail}}</td>
+    <td>{{ac.spass}}</td>
+</tr>
+</table>
+</div>
+
+<!--<ul class="list-group">
+  <li class="list-group-item" ng-repeat="ac in ac">{{ac.SName}}</li>
+  <li class="list-group-item">Second item</li>
+  <li class="list-group-item">Third item</li>
+</ul>-->
+
+
+
+<!--
 <h4>All Sales Man List</h4>
 
 User list
-<ul><li ng-repeat="ac in ac">{{ac.sName}}</li></ul>
+<ul><li ng-repeat="ac in ac">{{ac.sName}}</li></ul>-->

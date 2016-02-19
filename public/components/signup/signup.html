@@ -1,4 +1,76 @@
-<html>
+<div layout="column" layout-align="center center" style="position: relative; margin-top: 42px;">
+
+
+       <md-card class="signUpCard">
+
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Sign Up</span>
+          </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <div layout="row" layout-align="end end">
+        <md-button class="material-icons md-48" ui-sref="signin">exit_to_app</md-button>
+            </div>
+          <form ng-submit="submit()" novalidate>
+        <md-content layout="column" layout-padding>
+
+      <md-input-container>
+        <label>User Name</label>
+        <input type="text" ng-model="user.lastName"required>
+       
+      </md-input-container>
+            <md-input-container>
+        <label>Email Address</label>
+        <input type="email" ng-model="user.email" required>
+
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input type="password" ng-model="user.password" ng-click="userPass1()">
+      </md-input-container>
+            <md-input-container>
+        <label>Confirm Password</label>
+        <input type="password" ng-model="user.password2" ng-click="userPass1()">
+      </md-input-container>
+ </md-input-container>
+         
+  </md-content>
+ <md-radio-group ng-model="user.gender">
+      <md-radio-button value="Apple" class="md-primary">Male</md-radio-button>
+      <md-radio-button value="Banana" class="md-primary"> Female </md-radio-button>
+
+    </md-radio-group>
+  <div layout="row" layout-align="center center">
+        <md-button type="submit" class="md-raised md-primary"> Sign Up
+        </md-button>
+  </div>
+
+
+        </form>
+
+        </md-card-content>
+        
+      </md-card>
+
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<html>
 	<title>
 		Sign Up Page
 	</title>
@@ -17,4 +89,4 @@
 		</form>		
 		</body>
 		
-</html>
+</html>-->

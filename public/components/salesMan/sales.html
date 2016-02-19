@@ -1,10 +1,75 @@
+<md-dialog aria-label="Input Your Task">
+<form ng-submit="submit()"> 
+     <md-content layout="column" layout-padding>
+
+      <md-input-container>
+        <label>Enter Sales Name</label>
+        <input type="text" ng-model="sales.sName">
+      </md-input-container>
+      <md-input-container>
+        <label>Sales Man Email</label>
+        <input type="email" ng-model="sales.sEmail" required>
+      </md-input-container>
+   <md-input-container>
+        <label>Sales Man Password</label>
+        <input type="password" ng-model="sales.spass" required>
+      </md-input-container>
+  </md-content>
+  <div layout="row" layout-align="center center">
+        <md-button type="submit" class="md-primary md-raised"> Submit 
+        </md-button>
+  </div>
+        </form>
+</md-dialog>
+
+
+
+
+
+
+
+
+<!--<form ng-submit="submit()"> 
+     <md-content layout="column" layout-padding>
+
+      <md-input-container>
+        <label>Enter Sales Name</label>
+        <input type="text" ng-model="sales.sName">
+      </md-input-container>
+      <md-input-container>
+        <label>Sales Man Email</label>
+        <input type="email" ng-model="sales.email" required>
+      </md-input-container>
+   <md-input-container>
+        <label>Sales Man Password</label>
+        <input type="email" ng-model="sales.spass" required>
+      </md-input-container>
+  </md-content>
+  <div layout="row" layout-align="center center">
+        <md-button type="submit" class="md-primary"> Submit 
+        </md-button>
+  </div>
+        </form>-->
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <h3>Create a Sales Man</h3>
 
 <form ng-submit="submit()">
     <!--<input type="text" placeholder="orderPlace" ng-model="sales.orderplace">-->
-    <input type="text" placeholder="Company Name" ng-model="sales.cName">
+  <!--  <input type="text" placeholder="Company Name" ng-model="sales.cName">
     <input type="text" placeholder="Sales Man Name" ng-model="sales.sName">
     <input type="text" placeholder="sales Man Email" ng-model="sales.sEmail"> 
     <input type="text" placeholder="Sales Man Password" ng-model="sales.spass">
     <input type="submit" value="Submit this">
-</form>
+</form>-->

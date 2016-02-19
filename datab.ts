@@ -7,8 +7,8 @@ import bcrypt = require("bcrypt-nodejs");
  let firebase = require('firebase');
  let  router = express.Router();
  let	SALT_FACTOR	=	10;
-// let connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
-let connect = mongoose.connect('mongodb://localhost/salesapp');
+ let connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
+//let connect = mongoose.connect('mongodb://localhost/salesapp');
 let userSchema = new mongoose.Schema({
 	Name: {type:String, required: true},
 	UserName: {type: String, required: true, unique: true},
@@ -41,7 +41,9 @@ let salesMan = new mongoose.Schema({
    cName: String,
    CompanyID : String,
    sEmail: {type: String, required: true, unique: true},
-   spass: {type: String, required: true}
+   spass: {type: String, required: true},
+   lat:  String,
+   long: String
 });
 
 
@@ -278,6 +280,26 @@ function initializeApp(app){
         }
         })
     })
+    app.post('/slocation',(req,res)=>{
+        console.log('Location getting',req.body)
+        salesman.find({FirebaseToken: req.body.token},(err,data)=>{
+            if(err){
+                console.log("getting error", err);
+            }
+            else{
+                console.log('geeting response',data);
+                salesman.update({$push:{lat: req.body.lat,long:req.body.long}},(err,data)=>{
+                    console.log("data",data)
+                 res.json({success:true, "msg": "successfully Recieved Data", data:data})        
+        })
+                console.log("data is",data);
+            }
+        })
+    })
+    // app.get('/scurrentLocation',(req,res)=>{
+    //     console.log("getting body",req.query.body);
+        
+    // })
     app.post('/salesman',(req,res)=>{
         console.log('/salesman', req.body);
         Company.find({FirebaseToken:req.body.token},(err,success)=>{
