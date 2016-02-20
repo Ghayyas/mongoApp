@@ -63,7 +63,7 @@ angular.module('starter')
            long:$scope.user.long
           // user: $scope.user.ab
        })
-   $http.post(local + '/ordersend',$scope.user).then(function(success){
+   $http.post(local + 'ordersend',$scope.user).then(function(success){
        console.log('success',success);
        console.log("sdata",success.data.data);
        alert("Your Order is Send Succcessfully..");

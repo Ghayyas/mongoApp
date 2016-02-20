@@ -3,7 +3,7 @@ angular.module('app.getorder',[])
     var ab = localStorage.getItem('token');
     
     $document.ready(function(){
-    $http.get(local+'/getorders?token='+ab).then(function(success){
+    $http.get(local+'getorders?token='+ab).then(function(success){
         console.log("data",success)
         $scope.data = success.data.data;
         $scope.aer = false;

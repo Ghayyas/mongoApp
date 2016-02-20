@@ -6,7 +6,7 @@ angular.module('app.showCompany',[])
 
     
     
-    $http.post(local+'/companyList',abc).then(function(success){
+    $http.post(local+'companyList',abc).then(function(success){
         $scope.ac = success.data.data
         console.log("success",success)
     },function(err){

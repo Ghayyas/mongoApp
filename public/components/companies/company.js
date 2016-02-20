@@ -6,7 +6,7 @@ angular.module('app.company',[])
     $scope.company = {token: token};
     
     $scope.submit = function(){
-        $http.post( local + '/company',$scope.company).then(function(success){
+        $http.post( local + 'company',$scope.company).then(function(success){
             console.log('Company Saved..', success)
             console.log('sdf',success.data.data._id);
             localStorage.setItem('companyID',success.data.data._id);

@@ -7,7 +7,7 @@ angular.module('app.sales',[])
     $scope.submit = function(){
           alert("Successs...");
          $mdDialog.hide();
-        $http.post(local+'/salesman', $scope.sales).then(function(success){
+        $http.post(local+'salesman', $scope.sales).then(function(success){
            
             console.log('Success.. ', success);
         }, function(err){

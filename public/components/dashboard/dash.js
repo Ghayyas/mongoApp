@@ -6,7 +6,7 @@ angular.module('app.dash',[])
              var firebaseLocalToken = localStorage.getItem("token")
           $scope.user = {};
           $scope.Welcome = "hellllllo";
-          $http.get( local+"/users/" + uId).then(
+          $http.get( local+"users/" + uId).then(
             function (data) {
                 $scope.user = data.data.data;
                 console.log("companies ",$scope.user.Companies == null)

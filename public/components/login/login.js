@@ -9,10 +9,10 @@ angular.module('app.signin',[])
          if($scope.user.name == null || $scope.user.pass == null){
     alert('Please Fill All Field');
 }
-else{
-	 $http.post(local+'/login',$scope.user).success(function(data, err){
-         console.log('login data ' + JSON.stringify(data.user))
-          if(data.user){
+    else{
+	     $http.post(local+'login',$scope.user).then(function(data, err){
+            console.log('login data ' + JSON.stringify(data.user))
+             if(data.user){
 			 
              localStorage.setItem('token',data.user.FirebaseToken);
              console.log(data.user.FirebaseToken);
@@ -24,15 +24,22 @@ else{
              //$state.go('/dashboard/' +data._id);
             
 		 }
-         
-         if(data.message){
-			 alert(data.message)
+         else{
+             if(data == null){
+                 alert("user Not FOund...");
+             }
+             if(data.message){
+			   alert(data.message)
 		 }
-    })	
-   .error(function(data){
-       console.log('this is the error');
-	console.log("Error:" +data);
-   });
+         
+         }
+         
+         
+    },function(err){
+       //console.log('');
+	console.log("Error:" +err);
+   })	
+   
 }
 
 

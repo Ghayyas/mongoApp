@@ -9,7 +9,7 @@ angular.module('app.signup', [])
               
          console.log("sucess");
          
-         $http.post(local+'/signup',$scope.user).success(function(data){
+         $http.post(local+'signup',$scope.user).success(function(data){
           
           console.log('http post ', data);
           
