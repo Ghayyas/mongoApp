@@ -9,17 +9,13 @@ angular.module('app.signin',[])
          if($scope.user.name == null || $scope.user.pass == null){
     alert('Please Fill All Field');
 }
-<<<<<<< HEAD
+
+
     else{
-	     $http.post(local+'login',$scope.user).then(function(data, err){
-            console.log('login data ' + JSON.stringify(data.user))
-             if(data.user){
-=======
-else{
 	 $http.post(local+'login',$scope.user).success(function(data, err){
          console.log('login data ' + JSON.stringify(data.user))
           if(data.user){
->>>>>>> a7388809d2ce423da95c7ded2db9e339139c8395
+
 			 
              localStorage.setItem('token',data.user.FirebaseToken);
              console.log(data.user.FirebaseToken);
