@@ -10,7 +10,7 @@ angular.module('app.signin',[])
     alert('Please Fill All Field');
 }
 else{
-	 $http.post(local+'/login',$scope.user).success(function(data, err){
+	 $http.post(local+'login',$scope.user).success(function(data, err){
          console.log('login data ' + JSON.stringify(data.user))
           if(data.user){
 			 
