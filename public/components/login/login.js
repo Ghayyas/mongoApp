@@ -12,24 +12,25 @@ angular.module('app.signin',[])
 
 
     else{
-	 $http.post(local+'login',$scope.user).then(function(data){
-         console.log('data',data)
-         console.log('login data ' + JSON.stringify(data.user))
-          if(data.user){
+	 $http.post(local+'login',$scope.user).then(function(success){
+         console.log('data',success)
+         console.log('login data ' + JSON.stringify(success.user))
+          if(success.user){
 
 			 
-             localStorage.setItem('token',data.user.FirebaseToken);
-             console.log(data.user.FirebaseToken);
-             $rootScope.currentUser  = data;
+             localStorage.setItem('token',success.user.FirebaseToken);
+             console.log(success.user.FirebaseToken);
+             $rootScope.currentUser  = success;
              alert("Welcome User");
              
              
-              $location.path("/dashboard/"+data.user._id);
+              $location.path("/dashboard/"+success.user._id);
              //$state.go('/dashboard/' +data._id);
             
 		 }
          else{
-             if(data == null){
+             console.log('sdfafsf',success);
+             if(success == null){
                  alert("user Not FOund...");
              }
          }
