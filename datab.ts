@@ -330,12 +330,14 @@ function initializeApp(app){
                         console.log("success",success)
                     }
                 })
-                 Company.update({$push:{salesMan:sales._id.toString()}},(err,success)=>{
+                 Company.update({$push:{salesMan:sales._id.toString()}},(err,data)=>{
                     if(err){
                         console.log("unable to update Sales man ", err);
+                        res.json({success: false,"msg":"unable to update sales man",err:err})
                     }
                     else{
-                        console.log("success Fully saved Sales man", success);
+                        console.log("success Fully saved Sales man", data);
+                        res.json({success: true, "msg": "Sales man Saved Successfully",data:data})
                     }
                 })
                                 
@@ -497,7 +499,7 @@ function initializeApp(app){
                         
                     } else {
                         console.log('Password not Match',user)
-                      //  res.json({success: false, 'message': 'Password Not Found',data: user});
+                        res.json({success: false, 'message': 'Password Not Found',data: user});
                     }
                 })
                 // user.comparePassword(Password, function(err, success){
@@ -506,7 +508,7 @@ function initializeApp(app){
                 // })
             } else {
                 console.log("login failed ",user);
-                //res.json({'success': false, 'message': 'User Not Found', data: user});
+                res.json({'success': false, 'message': 'User Not Found', data: user});
             }
 
 
