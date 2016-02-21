@@ -20,7 +20,7 @@ angular.module('app.signin',[])
              localStorage.setItem('token',data.user.FirebaseToken);
              console.log(data.user.FirebaseToken);
              $rootScope.currentUser  = data;
-             alert("Welcome....");
+             alert("Welcome User");
              
              
               $location.path("/dashboard/"+data.user._id);
