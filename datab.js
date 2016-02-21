@@ -6,8 +6,8 @@ var uniqueValidator = require("mongoose-unique-validator");
 var firebase = require('firebase');
 var router = express.Router();
 var SALT_FACTOR = 10;
-var connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
-//let connect = mongoose.connect('mongodb://localhost/salesapp');
+//let connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
+var connect = mongoose.connect('mongodb://localhost/salesapp');
 var userSchema = new mongoose.Schema({
     Name: { type: String, required: true },
     UserName: { type: String, required: true, unique: true },
@@ -290,12 +290,14 @@ function initializeApp(app) {
                             console.log("success", success);
                         }
                     });
-                    Company.update({ $push: { salesMan: sales._id.toString() } }, function (err, success) {
+                    Company.update({ $push: { salesMan: sales._id.toString() } }, function (err, data) {
                         if (err) {
                             console.log("unable to update Sales man ", err);
+                            res.json({ success: false, "msg": "unable to update sales man", err: err });
                         }
                         else {
-                            console.log("success Fully saved Sales man", success);
+                            console.log("success Fully saved Sales man", data);
+                            res.json({ success: true, "msg": "Sales man Saved Successfully", data: data });
                         }
                     });
                 }
@@ -359,22 +361,27 @@ function initializeApp(app) {
         userModel.findOne({ UserName: req.body.name }, function (err, user) {
             if (err) {
                 console.log("Error ", err);
-            }
-            if (user) {
-                bcrypt.compare(Password, user['Password'], function (err, isMatch) {
-                    // if (err) return cb(err);
-                    //cb(null, isMatch);
-                    if (isMatch) {
-                        console.log('Password Match');
-                        res.json({ success: true, 'user': user });
-                    }
-                    else {
-                        console.log('Password not Match', user);
-                    }
-                });
+                res.json({ success: false, 'message': "Internal error", error: err });
             }
             else {
-                console.log("login failed ", user);
+                if (user) {
+                    bcrypt.compare(Password, user['Password'], function (err, isMatch) {
+                        // if (err) return cb(err);
+                        //cb(null, isMatch);
+                        if (isMatch) {
+                            console.log('Password Match', isMatch);
+                            res.json({ success: true, user: user });
+                        }
+                        else {
+                            console.log('Password not Match', user);
+                            res.json({ success: false, 'message': 'Password Not Found', user: user });
+                        }
+                    });
+                }
+                else {
+                    console.log("login failed ", err);
+                    res.json({ 'success': false, 'message': 'User Not Found', err: err });
+                }
             }
         });
     });

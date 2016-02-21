@@ -2,7 +2,15 @@ angular.module('app.getorder',[])
 .controller('getCtrl',function($scope,$http,local,$rootScope,$firebaseArray,$document){
     var ab = localStorage.getItem('token');
     
-    $document.ready(function(){
+             var ref = new Firebase("https://salesmanapp1.firebaseio.com/").child(ab);
+            console.log("Hello",ref)
+           var  ref2 = ref.child('msg');
+      //$scope.order = [];
+
+              $scope.aer = false;      
+              
+              
+         $scope.abc = function(){  
     $http.get(local+'getorders?token='+ab).then(function(success){
         console.log("data",success)
         $scope.data = success.data.data;
@@ -12,21 +20,15 @@ angular.module('app.getorder',[])
     },function(err){
         console.log("error",err);
     })
-    });
-    //$scope.fb = {FirebaseToken: ab}
-   // console.log('ab');
-   var ref = new Firebase("https://salesmanapp1.firebaseio.com/").child(ab);
-   console.log("Hello",ref)
-    var ref2 = ref.child('msg');
-      //$scope.order = [];
-
-              $scope.aer = false;      
-            
-            ref2.on('child_added', function(message) {
+      }
+  
+              
+              
+                 ref2.on('child_added', function(message) {
              //   $scope.order.push(message.val().msg)
                          $scope.aer = true;
-                console.log("Hello",ref2)
-                console.log('sfsdf',message.val());
+               // console.log("Hello",ref2)
+             //   console.log('sfsdf',message.val());
                // console.log('orders are',message.val().orders[0]);
                 //console.log('quantities are ',message.val().quantity[2]);
                 $scope.msg = $firebaseArray(ref2);
@@ -43,7 +45,13 @@ angular.module('app.getorder',[])
                //alert('orders are',message.val().orders[0]);
                //alert('quantities are ',message.val().quantity[0]);
                 })
-
-                       console.log('cd',$scope.cd);
     
+    //$document.ready(function(){
+     
+    
+    //});
+    //$scope.fb = {FirebaseToken: ab}
+   // console.log('ab');
+  
+        $scope.abc();
 })

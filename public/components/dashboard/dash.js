@@ -16,8 +16,8 @@ angular.module('app.dash',[])
                 else {
                     $scope.companyshow = false;
                     }
-                console.log('data is ',data.data.data);
-                console.log("data" + JSON.stringify(data.data));
+               // console.log('data is ',data.data.data);
+               // console.log("data" + JSON.stringify(data.data));
                  
                //$scope.user = data.data;
                //console.log('scoe: ' + JSON.stringify( $scope.user) )

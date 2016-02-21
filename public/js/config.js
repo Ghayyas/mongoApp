@@ -77,7 +77,7 @@ angular.module("myapp")
 
     })
     .constant('local','http://salesman12.herokuapp.com/')
-    
+    //http://salesman12.herokuapp.com
     .run(function($rootScope, $state){
         $rootScope.$on("$stateChangeStart",function(event, toState){
             var firebaseToken = localStorage.getItem('token')

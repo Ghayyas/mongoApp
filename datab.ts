@@ -7,8 +7,8 @@ import bcrypt = require("bcrypt-nodejs");
  let firebase = require('firebase');
  let  router = express.Router();
  let	SALT_FACTOR	=	10;
- let connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
-//let connect = mongoose.connect('mongodb://localhost/salesapp');
+//let connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
+let connect = mongoose.connect('mongodb://localhost/salesapp');
 let userSchema = new mongoose.Schema({
 	Name: {type:String, required: true},
 	UserName: {type: String, required: true, unique: true},
@@ -421,14 +421,14 @@ function initializeApp(app){
                 console.log("Error " ,err);
                 res.json({success: false, 'message': "Internal error", error: err});
 			}
-else{
+         else{
 			if(user){
                 
                 bcrypt.compare(Password, user['Password'], function(err, isMatch) {
                     // if (err) return cb(err);
                     //cb(null, isMatch);
                     if(isMatch) {
-                        console.log('Password Match')
+                        console.log('Password Match',isMatch)
                         
                         res.json({ success: true, user: user});
                         
@@ -508,11 +508,13 @@ else{
 				//     console.log(err + success);
 				//     res.send(err + success);
                 // })
-             }} 
-            //else {
-            //     console.log("login failed ",err);
-            //     res.json({'success': false, 'message': 'User Not Found', err: err});
-            // }
+             }
+                         else {
+                 console.log("login failed ",err);
+                 res.json({'success': false, 'message': 'User Not Found', err: err});
+             }
+            } 
+
 
 
 
