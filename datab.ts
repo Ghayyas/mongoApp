@@ -415,14 +415,15 @@ function initializeApp(app){
 	});
 	app.post('/login',(req,res)=>{
         let Password = req.body.pass;
-		userModel.findOne({UserName:req.body.name},(err,user )=>{
+		userModel.findOne({UserName:req.body.name},(err,user)=>{
 
             if(err){
                 console.log("Error " ,err);
-                //res.json({success: false, 'message': "Internal error", error: err});
+                res.json({success: false, 'message': "Internal error", error: err});
 			}
-
+else{
 			if(user){
+                
                 bcrypt.compare(Password, user['Password'], function(err, isMatch) {
                     // if (err) return cb(err);
                     //cb(null, isMatch);
@@ -497,19 +498,21 @@ function initializeApp(app){
                             
                            
                         
-                    } else {
+                        } else {
                         console.log('Password not Match',user)
                         res.json({success: false, 'message': 'Password Not Found',user: user});
                     }
+                
                 })
                 // user.comparePassword(Password, function(err, success){
 				//     console.log(err + success);
 				//     res.send(err + success);
                 // })
-            } else {
-                console.log("login failed ",err);
-                res.json({'success': false, 'message': 'User Not Found', err: err});
-            }
+             }} 
+            //else {
+            //     console.log("login failed ",err);
+            //     res.json({'success': false, 'message': 'User Not Found', err: err});
+            // }
 
 
 
