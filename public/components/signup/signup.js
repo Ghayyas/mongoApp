@@ -4,11 +4,12 @@ angular.module('app.signup', [])
        $rootScope.currentUser = {};
 
         $scope.user = {};
+        
         $scope.send = function(){
         if($scope.user.password === $scope.user.password2){
               
          console.log("sucess");
-         
+         alert("Working Please Wait....");
          $http.post(local+'signup',$scope.user).success(function(data){
           
           console.log('http post ', data);

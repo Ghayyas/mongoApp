@@ -76,7 +76,7 @@ angular.module("myapp")
         $urlRouterProvider.otherwise('/')
 
     })
-    .constant('local','http://salesman12.herokuapp.com/')
+    .constant('local','http://localhost:8000/')
     //http://salesman12.herokuapp.com
     .run(function($rootScope, $state){
         $rootScope.$on("$stateChangeStart",function(event, toState){

@@ -50,6 +50,6 @@ app.get('/signup',function(req:express.Request, res:express.Response){
                 })
 
 */
-app.listen(port,()=>{
-	console.log('Sever is starting....')
-});
+ app.listen(port,()=>{
+ 	console.log('Sever is starting....')
+ });
