@@ -12,7 +12,8 @@ angular.module('app.signin',[])
 
 
     else{
-	 $http.post(local+'login',$scope.user).success(function(data, err){
+	 $http.post(local+'login',$scope.user).then(function(data){
+         console.log('data',data)
          console.log('login data ' + JSON.stringify(data.user))
           if(data.user){
 
@@ -31,10 +32,6 @@ angular.module('app.signin',[])
              if(data == null){
                  alert("user Not FOund...");
              }
-             if(data.message){
-			   alert(data.message)
-		 }
-         
          }
          
          
