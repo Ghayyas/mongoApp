@@ -429,7 +429,7 @@ function initializeApp(app){
                     if(isMatch) {
                         console.log('Password Match')
                         
-                        res.json({ success: true, 'user': user});
+                        res.json({ success: true, user: user});
                         
          
                         
@@ -499,7 +499,7 @@ function initializeApp(app){
                         
                     } else {
                         console.log('Password not Match',user)
-                        res.json({success: false, 'message': 'Password Not Found',data: user});
+                        res.json({success: false, 'message': 'Password Not Found',user: user});
                     }
                 })
                 // user.comparePassword(Password, function(err, success){
@@ -507,8 +507,8 @@ function initializeApp(app){
 				//     res.send(err + success);
                 // })
             } else {
-                console.log("login failed ",user);
-                res.json({'success': false, 'message': 'User Not Found', data: user});
+                console.log("login failed ",err);
+                res.json({'success': false, 'message': 'User Not Found', err: err});
             }
 
 
