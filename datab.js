@@ -6,8 +6,8 @@ var uniqueValidator = require("mongoose-unique-validator");
 var firebase = require('firebase');
 var router = express.Router();
 var SALT_FACTOR = 10;
-//let connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
-var connect = mongoose.connect('mongodb://localhost/salesapp');
+var connect = mongoose.connect('mongodb://ghayyas:ghayyas@ds037165.mongolab.com:37165/salesapp');
+//let connect = mongoose.connect('mongodb://localhost/salesapp');
 var userSchema = new mongoose.Schema({
     Name: { type: String, required: true },
     UserName: { type: String, required: true, unique: true },
