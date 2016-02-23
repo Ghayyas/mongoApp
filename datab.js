@@ -43,7 +43,7 @@ var salesMan = new mongoose.Schema({
 salesMan.plugin(uniqueValidator);
 var salesman = mongoose.model('salesman', salesMan);
 var Company = mongoose.model('Company', CompanySchema);
-var userModel = mongoose.model("users", userSchema);
+var userModel = mongoose.model("user", userSchema);
 /*
 router.get('/',function(req,res){
     console.log('res');
@@ -333,11 +333,10 @@ function initializeApp(app) {
             else {
                 console.log("Successfully created user account with uid:", userData.uid);
                 var user = new userModel({
-                    Name: req.body.firstName,
+                    //Name: req.body.firstName,
+                    UserName: req.body.userName,
                     Email: req.body.email,
-                    UserName: req.body.lastName,
                     Password: req.body.password,
-                    RepeatPass: req.body.password2,
                     FirebaseToken: userData.uid,
                     //Age: parseInt(req.body.age),
                     Gender: req.body.gender

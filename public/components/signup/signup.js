@@ -6,6 +6,7 @@ angular.module('app.signup', [])
         $scope.user = {};
         
         $scope.send = function(){
+            console.log('sdfsdf');
         if($scope.user.password === $scope.user.password2){
               
          console.log("sucess");
